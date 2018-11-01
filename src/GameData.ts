@@ -5,10 +5,11 @@ class GameData {
     // 当前每种动物的价格
     public animalPrices: Array<number>;
 
-    // 当前跑道中的动物， 数组中记录的是动物种类, 如[1,1,3,3,5,6,6]
+    // 购买了的动物， 数组中记录的是动物种类
+    public boughtAnimals: Array<number>;
+
+    // 购买了的动物中在跑圈的动物， 数组中记录的是boughtAnimals的相应索引
     public runningAnimals: Array<number>;
-    // 当前池中的动物， 数组中记录的是动物种类
-    public selectedAnimals: Array<number>;
 
     // 当前的金币数
     public currentGold: number;
@@ -25,8 +26,7 @@ class GameData {
             price = price * 2;
         }
 
-        this.runningAnimals = [];
-        this.selectedAnimals = [];
+        this.boughtAnimals = [];
         this.currentGold = GameRules.initGold;
         this.unlockedLevel = GameRules.initUnlockedLevel;
     }

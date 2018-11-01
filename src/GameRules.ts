@@ -5,10 +5,14 @@ class GameRules {
     // 初始金钱
     public static initGold: number = 1000;
     //初始解锁动物级别
-    public static initUnlockedLevel: number = 1;
+    public static initUnlockedLevel: number = 4;
     
     // 动物总数
     public static animalCount: number = 40;
+    // 动物初始速度
+    public static animalInitSpeed: number = 0.5;
+    // 每种动物速度增加量
+    public static animalSpeedIncrement: number = 0.2;
     // 动物初始价格
     public static animalInitPrice: number = 100;
     // 动物价格每次购买后增加百分比

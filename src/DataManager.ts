@@ -29,6 +29,12 @@ class DataManager {
         }
     }
 
+    public getAnimal(animalKind: number, state: number): Animal {
+        let animal: Animal = Laya.Pool.getItemByClass("animal", Animal);
+
+        return animal;
+    }
+
     // 获取当前游戏数据
     public getData(): GameData {
         return this.gameData;

@@ -9,7 +9,10 @@ class GameMain {
     private pool: AnimalsPool;
 
     //购买动物按钮
-    private buyAnimals: BuyAnimals;
+    private buyButtons: BuyAnimalButtons;
+
+    //动物商店
+    private shop: AnimalsShop;
 
     //管理当前游戏数据，如那些动物在跑道上
     private manager: DataManager;
@@ -25,10 +28,26 @@ class GameMain {
         //设置剧中对齐
         Laya.stage.alignH = "center";
         //设置横竖屏
-        Laya.stage.screenMode = "vertical";
+        Laya.stage.screenMode = "horizontal";
+   
+        this.startLoad();
+    }
+
+    startLoad(): void {
+        //缓存animal动画
+        // Laya.Animation.createFrames(["res/a1.png"], "a1");
+        // Laya.Animation.createFrames(["res/a2.png"], "a2");
+        // Laya.Animation.createFrames(["res/a3.png"], "a3");
+        // Laya.Animation.createFrames(["res/a4.png"], "a4");
+        // Laya.Animation.createFrames(["res/a5.png"], "a5");
+        // Laya.Animation.createFrames(["res/a6.png"], "a6");
+
+        this.onLoaded();
     }
 
     onLoaded(): void {
+        console.log("laya loaded");
+
         //创建循环滚动的背景
         var bg: BackGround = new BackGround();
         //把背景添加到舞台上显示出来
@@ -42,15 +61,18 @@ class GameMain {
         //添加到舞台上
         Laya.stage.addChild(this.trail);
 
+        
         //选择了的动物容器
-        this.pool = new AnimalsPool();
+        this.pool = new AnimalsPool(this.trail);
         //添加到舞台上
         Laya.stage.addChild(this.pool);
-        
+
+        //动物商店
+        this.shop = new AnimalsShop(this.pool);
         //买动物容器
-        this.buyAnimals = new BuyAnimals();
+        this.buyButtons = new BuyAnimalButtons(this.shop);
         //添加到舞台上
-        Laya.stage.addChild(this.buyAnimals);
+        Laya.stage.addChild(this.buyButtons);
 
         //开始
         this.start();

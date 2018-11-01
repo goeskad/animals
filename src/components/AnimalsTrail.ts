@@ -2,37 +2,54 @@
  * 动物的跑道
  */
 class AnimalsTrail extends Laya.Box {
-    private animals: Animal[];
-
-    private manager: DataManager;
+    private manager: DataManager = DataManager.getInstance();
 
     constructor() {
         super();
-
-        this.manager = DataManager.getInstance();
     }
 
     // 动物移动动画
     public animalsRun() {
-        //TODO
+        for (let index = 0; index < this.numChildren; index++) {
+            let animal: Animal = this.getChildAt(index) as Animal;
+
+            // 计算弧度
+            let radian = animal.rotation * Math.PI / 180;
+            // 计算位置
+            animal.x = OvalConfig.longAxis * Math.cos(radian) + OvalConfig.center.x;
+            animal.y = OvalConfig.shortAxis * Math.sin(radian) + OvalConfig.center.y;
+            // 设置当前角度
+            animal.rotation += animal.speed;
+            if (animal.rotation > 360) {
+                animal.rotation = 0;
+            }
+        }
     }
 
     // 增加动物进入跑道
     public addAnimal(animal: Animal) {
-        this.manager.getData().runningAnimals.push(animal.animalKind);
-        this.manager.dataChanged();
+        animal.changeState(AnimalState.Running);
 
-        this.animals.push(animal);
+        // 设置一个随机角度
+        animal.rotation = Math.random() * 360;
+        this.addChild(animal);
     }
 
     // 从跑道中移除动物
     public removeAnimal(animal: Animal) {
-        let index = this.animals.indexOf(animal);
-        if(index > -1) {
-            this.animals.splice(index,1);
+        this.removeChild(animal);
 
-            this.manager.getData().runningAnimals.splice(index, 1);
-            this.manager.dataChanged();
-        } 
+        animal.recover();
     }
+}
+
+class OvalConfig {
+    // 椭圆中心点
+    public static center: Laya.Point = new Laya.Point(240, 426);
+
+    // 半长轴
+    public static longAxis: number = 170;
+
+    // 半短轴
+    public static shortAxis: number = 356;
 }
