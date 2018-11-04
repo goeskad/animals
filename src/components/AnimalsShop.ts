@@ -7,7 +7,7 @@ class AnimalsShop extends Laya.Box {
     // 可购买的动物
     private animals: Animal[];
 
-    private closeButton: Laya.Image;
+    private closeButton: Laya.Button;
 
     constructor(private pool: AnimalsPool) {
         super();
@@ -19,8 +19,9 @@ class AnimalsShop extends Laya.Box {
         this.pos(150,250);
 
         // 关闭此窗口的按钮
-        this.closeButton = new Laya.Image();
-        this.closeButton.skin = "res/btn_close.png";
+        this.closeButton = new Laya.Button();
+        this.closeButton.loadImage("res/btn_close.png");
+        this.closeButton.stateNum = 2;
         this.addChild(this.closeButton);
         this.closeButton.pos(50, 0);
         this.closeButton.on(Laya.Event.CLICK, this, this.onClickClose);
