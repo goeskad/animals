@@ -20,6 +20,7 @@ class GameMain {
     constructor() {
         //初始化引擎，设置游戏设计宽高，并且打开WebGL模式
         Laya.init(480, 852, Laya.WebGL);
+        //1440*2560 9：16
         //加载图集资源
         // Laya.loader.load("res/atlas/animals.json", Laya.Handler.create(this, this.onLoaded), null, Laya.Loader.ATLAS);
 
