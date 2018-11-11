@@ -67,9 +67,12 @@ class AnimalShop {
     // 购买动物， 购买后动物进入可选池中
     buyAnimal (propotype: Animal, aprice: Laya.Label): Animal {
         console.log("buy animal", propotype.animalKind);
-        if (this.pool.canAddAnimal()) {
+        if (this.manager.getData().currentGold >= propotype.price && this.pool.canAddAnimal()) {
             let animal: Animal = Animal.createViaPrototype(propotype);
 
+            this.manager.getData().currentGold -= propotype.price;
+            UIManager.getInstance().mainView.refreshGold();
+            
             propotype.price = propotype.price + Math.round(propotype.price * GameRules.animalPriceIncrement / 100);
             aprice.text = propotype.price.toString();
 

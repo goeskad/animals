@@ -41,8 +41,6 @@ class AnimalTrail {
                 animal.rotation = 360;
                 this.winBonus(animal);
             }
-
-            //console.log("rotation", animal.rotation, animal.getUIAttributes().winBonusFrames);
         }
     }
 
@@ -52,14 +50,11 @@ class AnimalTrail {
 
         let winBox: ui.WinBonusUI = Laya.Pool.getItemByClass(Animal.WinBonus_Pool_Sign, ui.WinBonusUI);
         winBox.show(false, false);
-        // winBox.setBounds(new laya.maths.Rectangle(350, 350, 100, 60));
         winBox.alpha = 1;
-        winBox.pos(370, 350);
+        winBox.pos(380, 350);
         winBox.blabel.text = animal.bonus.toString();
 
         animal.getUIAttributes().winBonusBox = winBox;
-
-        console.log("win bonus", winBox.getBounds());
     }
 
     // 增加动物进入跑道
@@ -68,12 +63,14 @@ class AnimalTrail {
 
         // 设置一个随机角度
         animal.rotation = Math.random() * 360;
+        
         this.ui.addChild(animal);
+        console.log("check animal", animal.getBounds());
     }
 
     // 从跑道中移除动物
     public removeAnimal(animal: Animal) {
-        this.ui.removeChild(animal);
+        animal.removeSelf();
 
         animal.recover();
     }
