@@ -2,7 +2,7 @@
     "x":0,
     "type":"View",
     "selectedBox":1,
-    "selecteID":18,
+    "selecteID":16,
     "props":{"width":250,"height":290},
     "nodeParent":-1,
     "label":"View",
@@ -15,7 +15,7 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"y":10,"x":10,"width":70,"var":"c1","skin":"slot.png","height":60},
+            "props":{"y":10,"x":10,"width":70,"var":"c1","skin":"icons/slot.png","height":60},
             "nodeParent":1,
             "label":"Image(c1)",
             "isDirectory":false,
@@ -28,7 +28,7 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"y":10,"x":90,"width":70,"var":"c2","skin":"slot.png","height":60},
+            "props":{"y":10,"x":90,"width":70,"var":"c2","skin":"icons/slot.png","height":60},
             "nodeParent":1,
             "label":"Image(c2)",
             "isDirectory":false,
@@ -41,7 +41,7 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"y":10,"x":170,"width":70,"var":"c3","skin":"slot.png","height":60},
+            "props":{"y":10,"x":170,"width":70,"var":"c3","skin":"icons/slot.png","height":60},
             "nodeParent":1,
             "label":"Image(c3)",
             "isDirectory":false,
@@ -54,7 +54,7 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"y":80,"x":10,"width":70,"var":"c4","skin":"slot.png","height":60},
+            "props":{"y":80,"x":10,"width":70,"var":"c4","skin":"icons/slot.png","height":60},
             "nodeParent":1,
             "label":"Image(c4)",
             "isDirectory":false,
@@ -67,7 +67,7 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"y":80,"x":90,"width":70,"var":"c5","skin":"slot.png","height":60},
+            "props":{"y":80,"x":90,"width":70,"var":"c5","skin":"icons/slot.png","height":60},
             "nodeParent":1,
             "label":"Image(c5)",
             "isDirectory":false,
@@ -80,7 +80,7 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"y":80,"x":170,"width":70,"var":"c6","skin":"slot.png","height":60},
+            "props":{"y":80,"x":170,"width":70,"var":"c6","skin":"icons/slot.png","height":60},
             "nodeParent":1,
             "label":"Image(c6)",
             "isDirectory":false,
@@ -93,7 +93,7 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"y":150,"x":10,"width":70,"var":"c7","skin":"slot.png","height":60},
+            "props":{"y":150,"x":10,"width":70,"var":"c7","skin":"icons/slot.png","height":60},
             "nodeParent":1,
             "label":"Image(c7)",
             "isDirectory":false,
@@ -106,7 +106,7 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"y":150,"x":90,"width":70,"var":"c8","skin":"slot.png","height":60},
+            "props":{"y":150,"x":90,"width":70,"var":"c8","skin":"icons/slot.png","height":60},
             "nodeParent":1,
             "label":"Image(c8)",
             "isDirectory":false,
@@ -119,7 +119,7 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"y":150,"x":170,"width":70,"var":"c9","skin":"slot.png","height":60},
+            "props":{"y":150,"x":170,"width":70,"var":"c9","skin":"icons/slot.png","height":60},
             "nodeParent":1,
             "label":"Image(c9)",
             "isDirectory":false,
@@ -132,7 +132,7 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"y":220,"x":10,"width":70,"var":"c10","skin":"slot.png","height":60},
+            "props":{"y":220,"x":10,"width":70,"var":"c10","skin":"icons/slot.png","height":60},
             "nodeParent":1,
             "label":"Image(c10)",
             "isDirectory":false,
@@ -145,7 +145,7 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"y":220,"x":90,"width":70,"var":"c11","skin":"slot.png","height":60},
+            "props":{"y":220,"x":90,"width":70,"var":"c11","skin":"icons/slot.png","height":60},
             "nodeParent":1,
             "label":"Image(c11)",
             "isDirectory":false,
@@ -158,7 +158,7 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"y":220,"x":170,"width":70,"var":"c12","skin":"slot.png","height":60},
+            "props":{"y":220,"x":170,"width":70,"var":"c12","skin":"icons/slot.png","height":60},
             "nodeParent":1,
             "label":"Image(c12)",
             "isDirectory":false,

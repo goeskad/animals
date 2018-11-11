@@ -57,7 +57,7 @@ class Animal extends Laya.Sprite {
         animal.rotation = 0;
         animal.alpha = 1;
         
-        animal.image.skin = "res/a" + animalKind + ".png";
+        animal.image.skin = "icons/a" + animalKind + ".png";
 
         return animal;
     }
