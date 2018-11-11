@@ -4,7 +4,9 @@
 class Animal extends Laya.Sprite {
     public static Animal_Pool_Sign = "animal";
 
-    // 动物种类， 从1到40逐渐升级
+    public static WinBonus_Pool_Sign = "WinBonus";
+
+    // 动物种类， 从0到40逐渐升级
     public animalKind: number;
 
     // 当前状态
@@ -22,8 +24,8 @@ class Animal extends Laya.Sprite {
     // 动物图像
     public image: Laya.Image;
 
-    // 在跑圈的动物复本
-    public runningCopy: Animal = null;
+    // UI相关的附加属性
+    public uiAttributes: AnimalUIAttributes;
 
     constructor() {
         super();
@@ -33,6 +35,9 @@ class Animal extends Laya.Sprite {
         this.addChild(this.image);
 
         this.autoSize = true;
+
+        this.image.width = 60;
+        this.image.height = 60;
     }
 
     // 根据动物种类创建动物实例
@@ -48,6 +53,12 @@ class Animal extends Laya.Sprite {
             animal.changeState(AnimalState.Locked);
         }
         animal.speed = GameRules.animalInitSpeed + GameRules.animalSpeedIncrement * animalKind;
+        animal.bonus = GameRules.animalInitBonus  * Math.pow(2, animalKind);
+        animal.rotation = 0;
+        animal.alpha = 1;
+        
+        animal.image.skin = "res/a" + animalKind + ".png";
+
         return animal;
     }
 
@@ -55,63 +66,55 @@ class Animal extends Laya.Sprite {
     public static createViaPrototype(prototype: Animal): Animal {
         let animal: Animal = Animal.createAnimal(prototype.animalKind);
         
-        animal.animalKind = prototype.animalKind;
-        animal.speed = prototype.speed;
         animal.state = prototype.state;
         animal.price = prototype.price;
-        animal.bonus = prototype.bonus;
         
         return animal;
     }
 
     // 回归对象池
     public recover(): void {
+        if (this.uiAttributes) {
+            this.uiAttributes.reset();
+        }
         Laya.Pool.recover(Animal.Animal_Pool_Sign, this);
     }
 
     // 改变动物状态
     public changeState(state: AnimalState): void {
         this.state = state;
+    }
 
-        this.image.skin = "res/a" + this.animalKind + ".png";
-        this.image.width = 60;
-        this.image.height = 60;
-
-        // 被锁住的动物是灰色状态
-        if (this.state === AnimalState.Locked) {
-            this.createGrayFilter();
-        } else {
-            this.image.filters = [];
+    public getUIAttributes(): AnimalUIAttributes {
+        if (!this.uiAttributes) {
+            this.uiAttributes = new AnimalUIAttributes();
         }
+        return this.uiAttributes;
+    }
+}
+
+class AnimalUIAttributes {
+    // 在跑圈的动物复本
+    public runningCopy: Animal;
+
+    public winBonusBox: ui.WinBonusUI;
+
+    constructor() {
+        this.reset();
     }
 
-    // 设置跑圈状态
-    public setRunningCopy(runningCopy: Animal): void {
-        this.runningCopy = runningCopy;
-        this.createGrayFilter();
-    }
-
-    // 清除跑圈状态
-    public clearRunningCopy(): void {
+    public reset(): void {
         this.runningCopy = null;
-        this.image.filters = [];
+
+        this.resetWinBonusBox();
     }
 
-    /**创建灰色滤镜位图**/
-    private  createGrayFilter(): void
-    {
-            //颜色滤镜矩阵,灰色
-            var colorMatrix:Array<number> = 
-                [
-                    0.3086, 0.6094, 0.0820, 0, 0,  //R
-                    0.3086, 0.6094, 0.0820, 0, 0, //G
-                    0.3086, 0.6094, 0.0820, 0, 0,  //B
-                    0, 0, 0, 1, 0, //A
-                ];
-            //创建灰色颜色滤镜
-            let GrayFilter: Laya.ColorFilter = new Laya.ColorFilter(colorMatrix);
-            //添加灰色颜色滤镜效果
-            this.image.filters = [GrayFilter];
+    public resetWinBonusBox() {
+        if (this.winBonusBox) {
+            this.winBonusBox.close(null, false);
+            Laya.Pool.recover(Animal.WinBonus_Pool_Sign, this.winBonusBox);
+            this.winBonusBox = null;
+        }
     }
 }
 

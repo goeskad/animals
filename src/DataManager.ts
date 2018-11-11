@@ -14,6 +14,9 @@ class DataManager {
 
     private gameData: GameData;
 
+    // 可购买的动物
+    private animals: Animal[];
+
     constructor() {
         if (DataManager.instance !== null) {
             return DataManager.instance;
@@ -29,10 +32,20 @@ class DataManager {
         }
     }
 
-    public getAnimal(animalKind: number, state: number): Animal {
-        let animal: Animal = Laya.Pool.getItemByClass("animal", Animal);
+    private initAnimals() {
+        // 初始化所有动物
+        this.animals = new Array<Animal>(GameRules.animalCount);
+        for (let index = 0; index < GameRules.animalCount; index++) {
+            let animal: Animal = Animal.createAnimal(index);
+            this.animals[index] = animal;
+        }
+    }
 
-        return animal;
+    public getAnimalPrototype(animalKind: number): Animal {
+        if (!this.animals) {
+           this.initAnimals();
+        }
+        return this.animals[animalKind] ;
     }
 
     // 获取当前游戏数据

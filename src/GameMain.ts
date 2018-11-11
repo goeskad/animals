@@ -2,20 +2,10 @@
  * 游戏主程序
  */
 class GameMain {
-    //跑道
-    private trail: AnimalsTrail;
-
-    //已添加的动物池
-    private pool: AnimalsPool;
-
-    //购买动物按钮
-    private buyButtons: BuyAnimalButtons;
-
-    //动物商店
-    private shop: AnimalsShop;
-
     //管理当前游戏数据，如那些动物在跑道上
     private manager: DataManager;
+
+    private mainView: MainView;
 
     constructor() {
         //初始化引擎，设置游戏设计宽高，并且打开WebGL模式
@@ -49,31 +39,12 @@ class GameMain {
     onLoaded(): void {
         console.log("laya loaded");
 
-        //创建循环滚动的背景
-        var bg: BackGround = new BackGround();
-        //把背景添加到舞台上显示出来
-        Laya.stage.addChild(bg);
-
         //重置游戏数据
         this.manager = DataManager.getInstance();
 
-        //跑动的动物容器
-        this.trail = new AnimalsTrail();
-        //添加到舞台上
-        Laya.stage.addChild(this.trail);
-
-        
-        //选择了的动物容器
-        this.pool = new AnimalsPool(this.trail);
-        //添加到舞台上
-        Laya.stage.addChild(this.pool);
-
-        //动物商店
-        this.shop = new AnimalsShop(this.pool);
-        //买动物容器
-        this.buyButtons = new BuyAnimalButtons(this.shop);
-        //添加到舞台上
-        Laya.stage.addChild(this.buyButtons);
+        this.mainView = new MainView();
+        Laya.stage.addChild(this.mainView);
+        Laya.stage.bgColor = "#00c1ff";
 
         //开始
         this.start();
@@ -97,6 +68,6 @@ class GameMain {
 
     onLoop(): void {
         // 控制动物移动
-        this.trail.animalsRun();
+        this.mainView.trail.animalsRun();
     }
 }
