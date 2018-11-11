@@ -3,7 +3,7 @@
  */
 class GameRules {
     // 初始金钱
-    public static initGold: number = 1000;
+    public static initGold: number = 5000;
     //初始解锁动物级别
     public static initUnlockedLevel: number = 4;
     
@@ -18,5 +18,5 @@ class GameRules {
     // 动物价格每次购买后增加百分比
     public static animalPriceIncrement: number = 20;
     // 动物每跑一圈的奖励金初始值，每一种动物的奖励金根据此值计算出来
-    public static animalInitBonus: number = 100;
+    public static animalInitBonus: number = 10;
 }

@@ -17,9 +17,9 @@ class GameMain {
         //设置适配模式
         Laya.stage.scaleMode = "showall";
         //设置剧中对齐
-        //Laya.stage.alignH = "center";
+        Laya.stage.alignH = "center";
         //设置横竖屏
-        Laya.stage.screenMode = "horizontal";
+        //Laya.stage.screenMode = "horizontal";
 
         //加载图集资源
         Laya.loader.load("res/atlas/icons.atlas", Laya.Handler.create(this, this.onLoaded), null, Laya.Loader.ATLAS);

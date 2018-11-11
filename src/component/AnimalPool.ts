@@ -94,7 +94,7 @@ class AnimalPool {
             if (closestSlotIndex >= 0) {
                 // remove from previous slot
                 if (this.slotAnimals[closestSlotIndex]) {
-                    if ((index + 1) < GameRules.animalCount && closestSlotIndex !== index 
+                    if ((animal.animalKind + 1) < GameRules.animalCount && closestSlotIndex !== index 
                     && this.slotAnimals[closestSlotIndex].animalKind === animal.animalKind) {
                         this.mergeAnimal(index, closestSlotIndex);
                         return;
