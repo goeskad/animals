@@ -5,7 +5,7 @@ class GameMain {
     //管理当前游戏数据，如那些动物在跑道上
     private manager: DataManager;
 
-    private mainView: MainView;
+    private uiManager: UIManager;
 
     constructor() {
         //初始化引擎，设置游戏设计宽高，并且打开WebGL模式
@@ -28,9 +28,9 @@ class GameMain {
 
         //重置游戏数据
         this.manager = DataManager.getInstance();
-
-        this.mainView = new MainView();
-        Laya.stage.addChild(this.mainView);
+        
+        this.uiManager = UIManager.getInstance();
+        Laya.stage.addChild(this.uiManager.mainView);
         Laya.stage.bgColor = "#00c1ff";
 
         //开始
@@ -55,6 +55,6 @@ class GameMain {
 
     onLoop(): void {
         // 控制动物移动
-        this.mainView.trail.animalsRun();
+        this.uiManager.mainView.trail.animalsRun();
     }
 }

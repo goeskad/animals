@@ -15,9 +15,14 @@ class MainView extends ui.MainViewUI{
         this.pool = new AnimalPool(this.poolUI, this.trail);
         this.shop = new AnimalShop(this.shopUI, this.pool);
         
+        this.refreshGold();
         this.shopUI.close(null, false);
         this.buyBtn.on(Laya.Event.CLICK, this, this.onClickBuy);
 	}
+
+    public refreshGold() {
+        this.goldLb.text = DataManager.getInstance().getData().currentGold.toString();
+    }
 
     onClickBuy() {
         this.shopUI.show(false, true);

@@ -50,16 +50,16 @@ class AnimalTrail {
         this.manager.getData().currentGold += animal.bonus;
         this.goldLb.text = this.manager.getData().currentGold.toString();
 
-        let winBox: ui.WinBonusUI = Laya.Pool.getItemByClass(Animal.WinBonus_Pool_Sign, ui.WinBonusUI);
-        winBox.show(false, false);
-        // winBox.setBounds(new laya.maths.Rectangle(350, 350, 100, 60));
-        winBox.alpha = 1;
-        winBox.pos(370, 350);
-        winBox.blabel.text = animal.bonus.toString();
+        // let winBox: ui.WinBonusUI = Laya.Pool.getItemByClass(Animal.WinBonus_Pool_Sign, ui.WinBonusUI);
+        // winBox.show(false, false);
+        // // winBox.setBounds(new laya.maths.Rectangle(350, 350, 100, 60));
+        // winBox.alpha = 1;
+        // winBox.pos(370, 350);
+        // winBox.blabel.text = animal.bonus.toString();
 
-        animal.getUIAttributes().winBonusBox = winBox;
+        // animal.getUIAttributes().winBonusBox = winBox;
 
-        console.log("win bonus", winBox.getBounds());
+        // console.log("win bonus", winBox.getBounds());
     }
 
     // 增加动物进入跑道

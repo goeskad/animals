@@ -16,7 +16,7 @@ class GameRules {
     // 动物初始价格
     public static animalInitPrice: number = 100;
     // 动物价格每次购买后增加百分比
-    public static animalPriceIncrement: number = 8;
+    public static animalPriceIncrement: number = 20;
     // 动物每跑一圈的奖励金初始值，每一种动物的奖励金根据此值计算出来
     public static animalInitBonus: number = 100;
 }

@@ -42,6 +42,7 @@ class AnimalPool {
         }
 
         this.slotAnimals[index] = null;
+        animal.off(Laya.Event.MOUSE_DOWN, this, this.dragAnimal);
         animal.removeSelf();
         animal.recover();
     }
@@ -56,6 +57,7 @@ class AnimalPool {
     }
 
     public dragAnimal(animal: Animal) {
+        console.log("click animal", animal.animalKind);
         if (this.hasRunningCopy(animal)) {
             this.toggleForTrail(animal);
             this.cleanedRunningCopy = true;
@@ -91,7 +93,8 @@ class AnimalPool {
             if (closestSlotIndex >= 0) {
                 // remove from previous slot
                 if (this.slotAnimals[closestSlotIndex]) {
-                    if (closestSlotIndex !== index && this.slotAnimals[closestSlotIndex].animalKind === animal.animalKind) {
+                    if ((index + 1) < GameRules.animalCount && closestSlotIndex !== index 
+                    && this.slotAnimals[closestSlotIndex].animalKind === animal.animalKind) {
                         this.mergeAnimal(index, closestSlotIndex);
                         return;
                     }
