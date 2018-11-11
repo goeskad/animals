@@ -14,7 +14,10 @@ class AnimalPool {
 
     constructor(private ui: ui.AnimalPoolUI, private trail: AnimalTrail) {
         this.slots = [ui.c1, ui.c2, ui.c3, ui.c4, ui.c5, ui.c6, ui.c7, ui.c8, ui.c9, ui.c10, ui.c11, ui.c12];
-        this.slotAnimals = new Array<Animal>(12);
+        for (let index = 0; index < this.slots.length; index++) {
+            this.slots[index].on(Laya.Event.MOUSE_DOWN, this, this.clickSlot, [index]);
+        }
+        this.slotAnimals = new Array<Animal>(this.slots.length);
     }
 
     public canAddAnimal() {
@@ -31,7 +34,6 @@ class AnimalPool {
         animal.changeState(AnimalState.Bought);
         this.ui.addChild(animal);
         this.setAnimalToSlot(animal, index);
-        animal.on(Laya.Event.MOUSE_DOWN, this, this.dragAnimal, [animal]);
     }
 
     // 从池中移除动物
@@ -42,7 +44,6 @@ class AnimalPool {
         }
 
         this.slotAnimals[index] = null;
-        animal.off(Laya.Event.MOUSE_DOWN, this, this.dragAnimal);
         animal.removeSelf();
         animal.recover();
     }
@@ -56,20 +57,20 @@ class AnimalPool {
         return -1;
     }
 
-    public dragAnimal(animal: Animal) {
-        console.log("click animal", animal.animalKind);
-        if (this.hasRunningCopy(animal)) {
-            this.toggleForTrail(animal);
-            this.cleanedRunningCopy = true;
-        } else {
-            this.cleanedRunningCopy = false;
+    public clickSlot(index: number) {
+        let animal: Animal = this.slotAnimals[index];
+        if (animal) {
+            if (this.hasRunningCopy(animal)) {
+                this.toggleForTrail(animal);
+                this.cleanedRunningCopy = true;
+            } else {
+                this.cleanedRunningCopy = false;
+            }
+
+            this.ui.on(Laya.Event.MOUSE_MOVE, this, this.moveAnimal, [index]);
+            this.ui.on(Laya.Event.MOUSE_UP, this, this.stopDragAnimal, [index]);
+            this.ui.on(Laya.Event.MOUSE_OUT, this, this.stopDragAnimal, [index]);
         }
-
-        let index = this.getAnimalSlot(animal);
-
-        this.ui.on(Laya.Event.MOUSE_MOVE, this, this.moveAnimal, [index]);
-        this.ui.on(Laya.Event.MOUSE_UP, this, this.stopDragAnimal, [index]);
-        this.ui.on(Laya.Event.MOUSE_OUT, this, this.stopDragAnimal, [index]);
     }
 
     public moveAnimal(index: number): void {
@@ -163,7 +164,10 @@ class AnimalPool {
     }
 
     private hasRunningCopy(animal: Animal): boolean {
-        return animal.getUIAttributes().runningCopy !== null;
+        if (animal.getUIAttributes().runningCopy) {
+            return true;
+        }
+        return false;
     }
 
     // 设置跑圈状态

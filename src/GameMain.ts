@@ -8,6 +8,8 @@ class GameMain {
     private uiManager: UIManager;
 
     constructor() {
+        Laya.MiniAdpter.init();
+        
         //初始化引擎，设置游戏设计宽高，并且打开WebGL模式
         Laya.init(480, 852, Laya.WebGL);
         //1440*2560 9：16
@@ -15,7 +17,7 @@ class GameMain {
         //设置适配模式
         Laya.stage.scaleMode = "showall";
         //设置剧中对齐
-        Laya.stage.alignH = "center";
+        //Laya.stage.alignH = "center";
         //设置横竖屏
         Laya.stage.screenMode = "horizontal";
 

@@ -58,7 +58,6 @@ class Animal extends Laya.Sprite {
         animal.alpha = 1;
         
         animal.image.skin = "icons/a" + animalKind + ".png";
-
         return animal;
     }
 
@@ -100,7 +99,6 @@ class AnimalUIAttributes {
     public winBonusBox: ui.WinBonusUI;
 
     constructor() {
-        this.reset();
     }
 
     public reset(): void {
@@ -113,8 +111,8 @@ class AnimalUIAttributes {
         if (this.winBonusBox) {
             this.winBonusBox.close(null, false);
             Laya.Pool.recover(Animal.WinBonus_Pool_Sign, this.winBonusBox);
-            this.winBonusBox = null;
         }
+        this.winBonusBox = null;
     }
 }
 
